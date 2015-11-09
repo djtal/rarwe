@@ -2,9 +2,6 @@ import Ember from 'ember';
 import Song from '../../../models/song';
 
 export default Ember.Route.extend({
-  model: function(){
-    return this.modelFor('bands.band');
-  },
 
   actions: {
     createSong: function() {
@@ -15,5 +12,10 @@ export default Ember.Route.extend({
       band.get('songs').pushObject(song);
       controller.set('title', '');
     },
-  }
+
+    didTransition: function() {
+      var band = this.modelFor('bands.band');
+      document.title = `${band.get('name')} songs - Rock & Roll`;
+    },
+  },
 })
