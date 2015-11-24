@@ -2,7 +2,7 @@
   <ul class="list-group songs">
     {{#if canCreateSong}}
       <li class="list-group-item">
-        <form {{action "createSong" on="submit"}}>
+        <form class="new-song-form" {{action "createSong" on="submit"}}>
           {{input type="text" class="new-song" placeholder="New song" value=title}}
           <button type="submit" class="btn btn-primary btn-sm new-song-button"
             disabled={{isAddButtonDisabled}} >

@@ -22,4 +22,4 @@ export default Ember.Route.extend({
       document.title = `${band.get('name')} songs - Rock & Roll`;
     },
   },
-})
+});
