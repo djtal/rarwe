@@ -1,7 +1,7 @@
 <div class="row">
   <ul class="list-group songs">
     {{#if canCreateSong}}
-      <li class="list-group-item">
+      <div class="list-group-item">
         <form class="new-song-form" {{action "createSong" on="submit"}}>
           {{input type="text" class="new-song" placeholder="New song" value=title}}
           <button type="submit" class="btn btn-primary btn-sm new-song-button"
@@ -9,7 +9,50 @@
             Add
           </button>
         </form>
-      </li>
+      </div>
+			<div class="btn-group song-filter-search-panel" role="group">
+        <div class="sorting-panel">
+          {{#link-to (query-params sortBy="ratingDesc")}}
+            <button type="button"
+              class="btn btn-default sort-rating-desc sorting-button" >
+              Rating
+              <span class="glyphicon glyphicon-arrow-down"></span>
+            </button>
+          {{/link-to}}
+          {{#link-to (query-params sortBy="ratingAsc")}}
+            <button type="button"
+              class="btn btn-default sort-rating-asc sorting-button" >
+              Rating
+              <span class="glyphicon glyphicon-arrow-up"></span>
+            </button>
+          {{/link-to}}
+          {{#link-to (query-params sortBy="titleDesc")}}
+            <button type="button"
+              class="btn btn-default sort-title-desc sorting-button" >
+              Title
+              <span class="glyphicon glyphicon-arrow-down"></span>
+            </button>
+          {{/link-to}}
+          {{#link-to (query-params sortBy="titleAsc")}}
+          <button type="button"
+            class="btn btn-default sort-title-asc sorting-button" >
+            Title
+            <span class="glyphicon glyphicon-arrow-up"></span>
+          </button>
+          {{/link-to}}
+        </div>
+        <div class="search-panel">
+          {{input type="text" placeholder="Start typing"
+            value=searchTerm class="search-field"}}
+          <div class="input-group-btn">
+            <button class="btn btn-default search-button">
+              <span class="glyphicon glyphicon-search" aria-label="search" aria-hidden="true">
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
     {{/if}}
     {{#unless canCreateSong}}
       <div class="list-group-item empty-list">
@@ -19,7 +62,7 @@
         </div>
       </div>
     {{/unless}}
-    {{#each model.songs as |song|}}
+    {{#each sortedSongs as |song|}}
       <li class="list-group-item song">
         {{song.title}}
         {{star-rating item=song rating=song.rating on-click=(action "updateRating") }}
