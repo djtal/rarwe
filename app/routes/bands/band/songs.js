@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import wait from '../../../utils/wait';
+import { capitalize as capitalizeWords } from '../../../helpers/capitalize';
 
 export default Ember.Route.extend({
   model: function() {
@@ -20,7 +21,8 @@ export default Ember.Route.extend({
 
     didTransition: function() {
       var band = this.modelFor('bands.band');
-      document.title = `${band.get('name')} songs - Rock & Roll`;
+      var name = capitalizeWords(band.get('name'));
+      document.title = `${name} songs - Rock & Roll`;
     },
   },
 });

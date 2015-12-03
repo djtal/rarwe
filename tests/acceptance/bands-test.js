@@ -148,7 +148,7 @@ test('Sort new songs in various ways', function(assert){
   click('button.sort-rating-asc');
   andThen(function(){
     assert.equal(currentURL(), '/bands/1/songs?sort=ratingAsc'); assertTrimmedText(assert, '.song:first', 'Mind Eraser, No Chaser', "The first song is the lowest ranked, first in the alphabet");
-    assertTrimmedText(assert, '.song:last', 'Spinning in Daffodils',
+    assertTrimmedText(assert, '.song:last', 'Spinning In Daffodils',
 "The last song is the highest ranked, last in the alphabet");
   });
 })
